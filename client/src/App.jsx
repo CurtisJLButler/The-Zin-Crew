@@ -8,6 +8,9 @@ function App() {
 
   return (
     <>
+    <h2>
+      set class to &lt;color&gt; to set the color
+    </h2>
       <div class="designColor dark-white">
         #f7f8fa <br></br>
         dark-white
