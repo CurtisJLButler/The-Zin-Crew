@@ -66,3 +66,41 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.designColor {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.dark-white {
+  background-color: #f7f8fa;
+  color: black;
+}
+.white {
+  background-color: #f6fbf7;
+  color: black;
+}
+.light-blue {
+  background-color: #5e8bb5;
+  color: black;
+}
+.blue {
+  background-color: #1d3d64;
+  color: white;
+}
+.dark-blue {
+  background-color: #0c1c29;
+  color: white;
+}
+.dark-grey {
+  background-color: #66696e;
+  color: white;
+}
+.grey {
+  background-color: #b0b5b9;
+  color: black;
+}
+.black {
+  background-color: #010302;
+  color: white;
+}
