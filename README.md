@@ -6,7 +6,7 @@
 - config/database.js
 
 in app.js the app connects with
-`// SQL Database connection setup
+ `// SQL Database connection setup
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
