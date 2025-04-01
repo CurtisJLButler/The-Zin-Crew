@@ -1,6 +1,6 @@
 // models/cars.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Adjust path as needed
+const sequelize = require('../config/database');
 
 
 // Define Car model

@@ -25,10 +25,7 @@ const sequelize = new Sequelize(
     logging: false
   }
 );
-// Test database connection
-sequelize.authenticate()
-  .then(() => console.log('Database connected successfully'))
-  .catch(err => console.error('Database connection error:', err));
+
 
 //define router
 var indexRouter = require('./routes/index');//see it as mini express app within an app

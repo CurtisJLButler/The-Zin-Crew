@@ -1,97 +1,72 @@
 var express = require('express');
 var router = express.Router();
-var Cars = require('../../models/car')
-// const auth = require('../../middleware/auth')
+var Cars = require('../../models/cars');
 
-
-//Get all books --> /books/
+// GET all cars --> /api/cars
 router.get('/', (req, res) => {
-    Cars.find().exec() //exec executes the query and returns a promise
-        .then(books => {
-            res.send(books)
-    })
-    .catch(err => {
-        res.status(500).send
-    })
-})
+    Cars.Car.findAll()
+        .then(cars => res.send(cars))
+        .catch(err => {
+            console.error(err);
+            res.status(500).send({ message: "Server error" });
+        });
+});
 
-//Get one book by ID
+// GET one car by ID --> /api/cars/:id
 router.get('/:id', (req, res) => {
-    Cars.findById(req.params.id).exec()
-        .then( book => {
-            if(!book){
-                res.status(404).send()//book with given id does not exist
-            } else{
-                res.send(book)
+    Cars.Car.findByPk(req.params.id)
+        .then(car => {
+            if (!car) {
+                return res.status(404).send({ message: "Car not found" });
             }
+            res.send(car);
         })
-        .catch( err => {
-            if (err.name === "CastError"){
-                res.status(400).send({message: "Invalid ID Provided"})
-            } else{
-                res.status(500).send({message: "Server error, come back soon"})
-            }
-        })
-})
+        .catch(err => {
+            console.error(err);
+            res.status(500).send({ message: "Server error, come back soon" });
+        });
+});
 
-//Create a new book
+// Create a new car --> POST /api/cars
 router.post('/', (req, res) => {
-    
-    //creat a new instance of books and apply the req.body into it
-    const newBook = new Cars(req.body)
-    //persist it th the database
-    newBook.save()
-    .then( result => res.status(201).send(result))
-    .catch( err => res.status(500).send())
-})
+    Cars.Car.create(req.body)
+        .then(newCar => res.status(201).send(newCar))
+        .catch(err => {
+            console.error(err);
+            res.status(500).send({ message: "Server error" });
+        });
+});
 
-//update a book by ID
+// Update a car by ID --> PUT /api/cars/:id
 router.put('/:id', (req, res) => {
-
-    Cars.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec()  // Pass req.body as the update data and { new: true }
-        .then(updatedBook => {
-            if (!updatedBook) {
-                // If the book was not found
-                return res.status(404).send({ message: "Book not found" });
+    Cars.Car.findByPk(req.params.id)
+        .then(car => {
+            if (!car) {
+                return res.status(404).send({ message: "Car not found" });
             }
-            // Return the updated book
-            res.status(200).send(updatedBook);
+            return car.update(req.body)
+                .then(updatedCar => res.status(200).send(updatedCar));
         })
         .catch(err => {
-            console.error(err);  // Log the error for debugging
-            if (err.name === "CastError") {
-                // Handle invalid ObjectId format
-                res.status(400).send({ message: "Invalid ID Provided" });
-            } else {
-                // Handle server errors
-                res.status(500).send({ message: "Server error, please try again later" });
-            }
+            console.error(err);
+            res.status(500).send({ message: "Server error, please try again later" });
         });
 });
 
-//Delete one book by ID
-
+// Delete a car by ID --> DELETE /api/cars/:id
 router.delete('/:id', (req, res) => {
-    Cars.findByIdAndDelete(req.params.id).exec()
-        .then(result => {
-            if (!result) {
-                // If no book was found
-                res.status(404).send(); // This is fine, but let's ensure this path is not left unhandled
-            } else {
-                // If deletion was successful, but we're missing the proper response status
-                res.status(200).send({
-                    message: "Object was deleted!",
-                    book: result
-                });
+    Cars.Car.findByPk(req.params.id)
+        .then(car => {
+            if (!car) {
+                return res.status(404).send({ message: "Car not found" });
             }
+            return car.destroy()
+                .then(() => res.status(200).send({ message: "Car was deleted!", car }));
         })
         .catch(err => {
-            if (err.name === "CastError") {
-                res.status(400).send({ message: "Invalid ID Provided" });
-            } else {
-                res.status(500).send({ message: "Server error, come back soon" });
-            }
+            console.error(err);
+            res.status(500).send({ message: "Server error, come back soon" });
         });
 });
 
-module.exports = router
+module.exports = router;
