@@ -25,7 +25,7 @@ const Car = sequelize.define('Car', {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            min: 1886 // First car year
+            min: 1886
         }
     },
     Price: {
