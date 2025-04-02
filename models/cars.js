@@ -1,9 +1,6 @@
-// models/cars.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-
-// Define Car model
 const Car = sequelize.define('Car', {
     Car_Name: {
         type: DataTypes.STRING,
@@ -62,40 +59,29 @@ const Car = sequelize.define('Car', {
         type: DataTypes.STRING(17),
         allowNull: false,
         unique: true
+    },
+    Colors: {
+        type: DataTypes.TEXT,  // Store as comma-separated string
+        allowNull: false,
+        get() {
+            return this.getDataValue('Colors')?.split(',') || [];
+        },
+        set(value) {
+            this.setDataValue('Colors', Array.isArray(value) ? value.join(',') : value);
+        }
+    },
+    Interior_Colors: {
+        type: DataTypes.TEXT,  // Store as comma-separated string
+        allowNull: false,
+        get() {
+            return this.getDataValue('Interior_Colors')?.split(',') || [];
+        },
+        set(value) {
+            this.setDataValue('Interior_Colors', Array.isArray(value) ? value.join(',') : value);
+        }
     }
 }, {
     timestamps: false
 });
 
-// Define Car Colour model
-const CarColour = sequelize.define('CarColour', {
-    Colour: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-}, {
-    timestamps: false
-});
-
-// Define Car Interior Colour model
-const CarInteriorColour = sequelize.define('CarInteriorColour', {
-    Interior_Color: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
-}, {
-    timestamps: false
-});
-
-// Define associations
-Car.hasMany(CarColour, { foreignKey: 'car_id' });
-CarColour.belongsTo(Car, { foreignKey: 'car_id' });
-
-Car.hasMany(CarInteriorColour, { foreignKey: 'car_id' });
-CarInteriorColour.belongsTo(Car, { foreignKey: 'car_id' });
-
-module.exports = {
-    Car,
-    CarColour,
-    CarInteriorColour
-};
+module.exports = { Car };
