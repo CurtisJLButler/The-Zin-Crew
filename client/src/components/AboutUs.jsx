@@ -5,7 +5,7 @@ import React from 'react';
 const Main = () => {
     return (
         <div>
-            <p> hello</p>
+            <p> This is the about Us page!</p>
         </div>
     )
 }
