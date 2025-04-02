@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+const path = require('path');
 var Cars = require('../../models/cars');
 
 // GET all cars --> /api/cars
-router.get('/', (req, res) => {
+router.get('/cars', (req, res) => {
     Cars.Car.findAll()
         .then(cars => res.send(cars))
         .catch(err => {
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 // GET one car by ID --> /api/cars/:id
-router.get('/:id', (req, res) => {
+router.get('/cars/:id', (req, res) => {
     Cars.Car.findByPk(req.params.id)
         .then(car => {
             if (!car) {
@@ -28,7 +29,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a new car --> POST /api/cars
-router.post('/', (req, res) => {
+router.post('/cars/', (req, res) => {
     Cars.Car.create(req.body)
         .then(newCar => res.status(201).send(newCar))
         .catch(err => {
@@ -38,7 +39,7 @@ router.post('/', (req, res) => {
 });
 
 // Update a car by ID --> PUT /api/cars/:id
-router.put('/:id', (req, res) => {
+router.put('/cars/:id', (req, res) => {
     Cars.Car.findByPk(req.params.id)
         .then(car => {
             if (!car) {
@@ -54,7 +55,7 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete a car by ID --> DELETE /api/cars/:id
-router.delete('/:id', (req, res) => {
+router.delete('/cars/:id', (req, res) => {
     Cars.Car.findByPk(req.params.id)
         .then(car => {
             if (!car) {
@@ -67,6 +68,21 @@ router.delete('/:id', (req, res) => {
             console.error(err);
             res.status(500).send({ message: "Server error, come back soon" });
         });
+});
+
+// GET image by name --> /api/image/:imageName
+router.get('/image/:imageName', (req, res) => {
+    const imageName = req.params.imageName;
+    // Assuming images are located in the 'public/images' folder at the project root
+    const options = { root: path.join(__dirname, '../../public/images') };
+
+    res.sendFile(imageName, options, (err) => {
+        if (err) {
+            console.error(err);
+            // If file not found or another error occurs, send a 404 or appropriate error status.
+            return res.status(err.status || 404).send({ message: "Image not found" });
+        }
+    });
 });
 
 module.exports = router;
