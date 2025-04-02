@@ -6,6 +6,10 @@ const Car = sequelize.define('Car', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    Car_Image: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     Brand: {
         type: DataTypes.STRING,
         allowNull: false
