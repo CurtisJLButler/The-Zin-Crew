@@ -6,9 +6,19 @@ const Car = sequelize.define('Car', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    Car_Image: {
+    Car_Thumbnail: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    Car_Images: {
+        type: DataTypes.TEXT,  // Store as comma-separated string
+        allowNull: false,
+        get() {
+            return this.getDataValue('Car_Images')?.split(',') || [];
+        },
+        set(value) {
+            this.setDataValue('Car_Images', Array.isArray(value) ? value.join(',') : value);
+        }
     },
     Brand: {
         type: DataTypes.STRING,
