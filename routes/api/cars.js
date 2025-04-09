@@ -6,7 +6,10 @@ var Cars = require('../../models/cars');
 // GET all cars --> /api/cars
 router.get('/cars', (req, res) => {
     Cars.Car.findAll()
-        .then(cars => res.send(cars))
+        .then(cars => {
+            res.send(cars)
+            console.log("server sent car")
+        })
         .catch(err => {
             console.error(err);
             res.status(500).send({ message: "Server error" });

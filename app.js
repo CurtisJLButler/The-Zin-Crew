@@ -39,8 +39,10 @@ var app = express();
 // app.set('view engine', 'jade');//setting the template engine to the jade
 
 const corsOptions = {
-  origin: 'http://localhost:5000/'
+  origin: ['http://localhost:5000', 'http://localhost:8080']
 }
+
+
 
 //define middleware
 app.use(cors(corsOptions))
