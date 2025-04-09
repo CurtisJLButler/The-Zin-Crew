@@ -3,7 +3,7 @@ import '../css/AboutUs.css'
 import AboutBan from '../assets/aboutban.jpg'
 //import 'font-awesome/css/font-awesome.min.css';
 
-const Main = () => {
+const About = () => {
     return (
         <div>
             <img src={AboutBan} style={{width: "100%", height: "300px"}} />
@@ -25,4 +25,4 @@ const Main = () => {
     )
 }
 
-export default Main;
+export default About;
