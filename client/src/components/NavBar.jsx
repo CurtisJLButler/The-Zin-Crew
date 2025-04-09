@@ -1,12 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
+import logo from '../assets/logo.png'
 
 const NavBar = () => {
     return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <a href="/#" className="navbar-brand d-flex align-items-center">
-          <strong>Cars</strong>
+        <img src={logo} alt="ZinWagon Logo" style={{ height: '60px', marginRight: '4px' }} />
         </a>
        
 
