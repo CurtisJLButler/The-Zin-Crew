@@ -1,0 +1,16 @@
+h2 {
+    font-size: 2.5rem;
+  color: black;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 130ch;
+    text-align: center;
+
+  }
+
