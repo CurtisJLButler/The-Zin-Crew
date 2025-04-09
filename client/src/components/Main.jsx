@@ -21,18 +21,20 @@ const Main = () => {
       }, [])
 
 
-    return (
+      return (
         <div>
-            <img src={carHome} style={{width: "100%", height: "300px"}} />
-            <p> hello</p>
-            {/* <img src="http://localhost:5000/api/image/1.jpg" style={{height: "300px"}} /> */}
-            {
-                cars.map(car => 
-                  <Card key={car.id} car={car} />
-                )
-              }
+          <img src={carHome} style={{ width: "100%", height: "300px" }} />
+          <p>hello</p>
+      
+          <div className="container">
+            <div className="row">
+              {cars.map(car => (
+                <Card key={car.id} car={car} />
+              ))}
+            </div>
+          </div>
         </div>
-    )
+      );
 }
 
 export default Main;
