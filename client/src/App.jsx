@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from './components/NavBar'
 import Main from './components/Main';
 import Inventory from './components/Inventory'
+import Car from './components/Car-Details'
 import AboutUs from './components/AboutUs'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -19,6 +20,7 @@ function App() {
           <Route path='/inventory' element={<Inventory />} />
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/car/:id' element={<Car />} />
         </Routes>
       </div>
       <Footer />
