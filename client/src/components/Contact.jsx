@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/forms.css'
 //import 'font-awesome/css/font-awesome.min.css';
 
+
 const Contact = props => {
     return (
         <div>
