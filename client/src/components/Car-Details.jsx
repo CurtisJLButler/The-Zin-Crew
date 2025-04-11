@@ -7,7 +7,6 @@ const Card = () => {
   const { id } = useParams();
   const [car, setcar] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
     useEffect(() => {
       axios.get(`http://localhost:5000/api/cars/${id}`)
       .then((response) => {
@@ -16,7 +15,6 @@ const Card = () => {
       })
       .catch(err => console.log(err))
     }, [])
-
     // setCurrentImageIndex(1)
     const allImages = [car.Car_Thumbnail, ...(car.Car_Images || [])];
     const currentImage = allImages[currentImageIndex] || car.Car_Thumbnail;
@@ -44,7 +42,6 @@ const Card = () => {
                             <button className="btn btn-secondary" onClick={prevImage}>⟵ Previous</button>
                             <button className="btn btn-secondary" onClick={nextImage}>Next ⟶</button>
                 </div>
-
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
                       <p className="card-text"> {car.Car_Name}</p>

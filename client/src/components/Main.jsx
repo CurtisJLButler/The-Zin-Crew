@@ -24,8 +24,7 @@ const Main = () => {
       return (
         <div>
           <img src={carHome} style={{ width: "100%", height: "300px" }} />
-          <p>hello</p>
-      
+          <p>INVENTORY</p>
           <div className="container">
             <div className="row">
               {cars.map(car => (
