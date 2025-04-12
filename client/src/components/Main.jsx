@@ -1,13 +1,39 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
+import carHome from '../assets/carHome.jpeg'
+import axios from 'axios';
+import Card from './Card';
 //import '../css/main.css'
 //import 'font-awesome/css/font-awesome.min.css';
 
+
+
 const Main = () => {
-    return (
+    const [cars, setcars] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/api/cars/")
+        .then((response) => {
+          console.log(response.data)
+          setcars(response.data)
+        })
+        .catch(err => console.log(err))
+      }, [])
+
+
+      return (
         <div>
-            <p> This is the home page!</p>
+          <img src={carHome} style={{ width: "100%", height: "300px" }} />
+          <p>INVENTORY</p>
+          <div className="container">
+            <div className="row">
+              {cars.map(car => (
+                <Card key={car.id} car={car} />
+              ))}
+            </div>
+          </div>
         </div>
-    )
+      );
 }
 
 export default Main;
