@@ -29,12 +29,12 @@ const Card = () => {
 
   return (
     <>
-      <div className="row" style={{ paddingLeft: '30%', paddingRight: '30%' }}>
+      <div className="row" style={{ paddingLeft: '5%', paddingRight: '5%' }}>
         <div>
           <img
             className="card-img-top"
             alt="Car Thumbnail"
-            style={{ height: 225, width: 'auto', display: 'block' }}
+            style={{ height: 400, width: 'auto', display: 'block' }}
             src={`http://localhost:5000/api/image/${currentImage}`}
           />
           <button className="btn btn-secondary" onClick={prevImage}>⟵ Previous</button>
@@ -49,7 +49,28 @@ const Card = () => {
 
           <div className="d-flex justify-content-between align-items-center mb-3">
             <p className="card-text">{car.Brand}</p>
-            <button
+            <p><strong>Year:</strong> {car.Year}</p>
+          </div>
+
+          <div className="d-flex justify-content-between align-items-center mb-3">
+              <p><strong>Make:</strong> {car.make}</p>
+              <p><strong>Interior Colors:</strong> {(car.Interior_Colors || []).join(', ')}</p>
+          </div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+              <p><strong>Tire Type:</strong> {car.Tire_Type}</p>
+              <p><strong>Transmission:</strong> {car.Transmission}</p>
+          </div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+              <p><strong>Fuel Type:</strong> {car.Fuel_Type}</p>
+              <p><strong>Engine:</strong> {car.Engine}</p>
+          </div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+              <p><strong>Seating Capacity:</strong> {car.Seating_Capacity}</p>
+              <p><strong>Colors:</strong> {(car.Colors || []).join(', ')}</p>
+          </div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+              
+              <button
               className='btn btn-secondary'
               onClick={() => {
                 window.location.href = `http://localhost:8080/test-drive/${car.VIN}`;
@@ -58,17 +79,15 @@ const Card = () => {
               Book a test drive
             </button>
           </div>
-
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            
+          </div>
           <div className="card-text">
-            <p><strong>Make:</strong> {car.make}</p>
-            <p><strong>Year:</strong> {car.Year}</p>
-            <p><strong>Tire Type:</strong> {car.Tire_Type}</p>
-            <p><strong>Transmission:</strong> {car.Transmission}</p>
-            <p><strong>Fuel Type:</strong> {car.Fuel_Type}</p>
-            <p><strong>Engine:</strong> {car.Engine}</p>
-            <p><strong>Seating Capacity:</strong> {car.Seating_Capacity}</p>
-            <p><strong>Colors:</strong> {(car.Colors || []).join(', ')}</p>
-            <p><strong>Interior Colors:</strong> {(car.Interior_Colors || []).join(', ')}</p>
+            
+            
+            
+            
+
           </div>
         </div>
       </div>

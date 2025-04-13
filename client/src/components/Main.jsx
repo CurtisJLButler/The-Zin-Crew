@@ -23,7 +23,25 @@ const Main = () => {
 
       return (
         <div>
-          <img src={carHome} style={{ width: "100%", height: "300px" }} />
+          <div style={{ position: "relative", textAlign: "center", color: "white" }}>
+            <img 
+              src={carHome} 
+              style={{ width: "100%", height: "400px", objectFit: "cover" }} 
+            />
+            <div 
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                fontSize: "5rem",
+                fontWeight: "bold",
+                textShadow: "2px 2px 8px rgba(0,0,0,0.7)"
+              }}
+            >
+              Zin Wagon
+            </div>
+          </div>
           <h1>INVENTORY</h1>
           <div className="container">
             <div className="row">
