@@ -7,6 +7,8 @@ import AboutUs from './components/AboutUs'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { Route, Routes } from 'react-router-dom'
+import Test_Drive from './components/Test_Drive';
+
 
 //import './App.css'
 
@@ -21,6 +23,7 @@ function App() {
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/car/:id' element={<Car />} />
+          <Route path='/test-drive/:id' element={<Test_Drive />} />
         </Routes>
       </div>
       <Footer />
