@@ -5,9 +5,11 @@ var router = express.Router();
 
 // var usersRouter = require('./users')
 var bookRouter = require('./cars')
+const contactRoutes = require('./contact')
 
 // router.use('/users', usersRouter)
 router.use('/', bookRouter)
+router.use('/contact', contactRoutes)
 //this causes the middleware to be executed
 //router.use(checkFoo)
 
