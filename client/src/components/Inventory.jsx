@@ -18,7 +18,7 @@ const Main = () => {
       }, [])
     return (
         <div>
-            <p> This is the inventory Page!</p>
+
 
             <div className="container">
             <div className="row">
